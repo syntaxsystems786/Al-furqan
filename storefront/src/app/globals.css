@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --background: #FAFAF8;
+  --foreground: #1A1A1A;
+  --accent: #8C7A6B;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-montserrat);
+  --font-serif: var(--font-cinzel);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+  overflow-x: hidden;
+}
+
+/* Luxury Taupe Text Gradient Utility */
+.text-gold-gradient {
+  background: linear-gradient(to right, #8C7A6B, #B89F70, #8C7A6B);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
