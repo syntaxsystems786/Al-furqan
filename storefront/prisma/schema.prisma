@@ -86,3 +86,11 @@ model OrderItem {
   quantity           Int
   priceAtPurchase    Float
 }
+
+model SiteSettings {
+  id               Int      @id @default(autoincrement())
+  heroImageUrl     String?
+  featuredProducts Json?
+  journalEntries   Json?
+  updatedAt        DateTime @updatedAt
+}

@@ -10,6 +10,7 @@ const menuItems = [
   { name: 'Products', icon: Package, href: '/admin/products' },
   { name: 'Categories', icon: Package, href: '/admin/categories' },
   { name: 'Orders', icon: ShoppingCart, href: '/admin/orders' },
+  { name: 'Settings', icon: Package, href: '/admin/settings' },
 ];
 
 export default function Sidebar() {
@@ -28,7 +29,8 @@ export default function Sidebar() {
     }
   }, [pathname, router]);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await fetch('/api/auth/logout', { method: 'POST' });
     localStorage.removeItem('admin_token');
     localStorage.removeItem('admin_user');
     router.push('/admin/login');

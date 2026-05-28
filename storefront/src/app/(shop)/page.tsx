@@ -18,11 +18,25 @@ export default function Home() {
   const opacityHero = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const ySection1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
+  const [cmsSettings, setCmsSettings] = useState<any>(null);
+
   useEffect(() => {
     async function load() {
       try {
+        // Fetch CMS Settings
+        const settingsRes = await fetch('/api/settings');
+        const settings = await settingsRes.json();
+        setCmsSettings(settings);
+
+        // Fetch Products
         const data = await fetchProducts();
-        setFeaturedProducts(data.slice(0, 6)); // Show more products on homepage
+        
+        // Filter featured products based on CMS, or fallback to first 6
+        if (settings?.featuredProducts && settings.featuredProducts.length > 0) {
+          setFeaturedProducts(data.filter((p: any) => settings.featuredProducts.includes(p.id)));
+        } else {
+          setFeaturedProducts(data.slice(0, 6)); 
+        }
       } catch (e) {
         console.error(e);
       }
@@ -190,7 +204,7 @@ export default function Home() {
               className="absolute bottom-[-16px] left-1/2 -translate-x-1/2 w-[25%] h-2 bg-[#1C1C1C] blur-[6px] rounded-full"
             />
             <Image
-              src="/perfumes/p1.png"
+              src={cmsSettings?.heroImageUrl || "/perfumes/p1.png"}
               alt="Al Furqan Signature Bottle"
               fill
               priority
@@ -436,14 +450,17 @@ export default function Home() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {[
-              { title: "The Anatomy of Oud", date: "Oct 12, 2026", img: "/perfumes/p3.jpeg" },
-              { title: "Distilling the Desert Rose", date: "Sep 28, 2026", img: "/perfumes/p4.jpeg" },
-              { title: "A Conversation with the Founder", date: "Aug 15, 2026", img: "/perfumes/p5.jpeg" }
-            ].map((post, i) => (
+            {(cmsSettings?.journalEntries && cmsSettings.journalEntries.length > 0 
+              ? cmsSettings.journalEntries 
+              : [
+                { title: "The Anatomy of Oud", date: "Oct 12, 2026", image: "/perfumes/p3.jpeg" },
+                { title: "Distilling the Desert Rose", date: "Sep 28, 2026", image: "/perfumes/p4.jpeg" },
+                { title: "A Conversation with the Founder", date: "Aug 15, 2026", image: "/perfumes/p5.jpeg" }
+              ]
+            ).map((post: any, i: number) => (
               <div key={i} className="group cursor-pointer">
-                <div className="relative aspect-[4/3] bg-[#FBFBFA] mb-6 overflow-hidden">
-                  <Image src={post.img} alt={post.title} fill className="object-cover opacity-80 mix-blend-multiply transition-transform duration-[2s] group-hover:scale-105" />
+                <div className="relative aspect-[4/3] bg-[#FBFBFA] mb-6 overflow-hidden border border-[#1A1A1A]/10">
+                  <img src={post.image || post.img} alt={post.title} className="absolute inset-0 w-full h-full object-cover opacity-90 mix-blend-multiply transition-transform duration-[2s] group-hover:scale-105" />
                 </div>
                 <p className="text-[9px] uppercase tracking-[0.2em] text-[#8C7A6B] mb-3" style={{ fontFamily: "var(--font-montserrat)" }}>{post.date}</p>
                 <h3 className="text-2xl text-[#1A1A1A] group-hover:text-[#8C7A6B] transition-colors" style={{ fontFamily: "var(--font-cormorant)", fontWeight: 400 }}>{post.title}</h3>
