@@ -68,7 +68,7 @@ export default function ProductDetail() {
       price: product.price,
       size: selectedSize || 'OS',
       quantity,
-      image: product.images?.[0]?.url ? `http://localhost:4000${product.images[0].url}` : `/perfumes/p${(product.id % 5) + 1}.jpeg`,
+      image: product.images?.[0]?.url || `/perfumes/p${(product.id % 5) + 1}.jpeg`,
     });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
@@ -88,7 +88,7 @@ export default function ProductDetail() {
   );
 
   const imageId = (product.id % 5) + 1;
-  const image = product.images?.[0]?.url ? `http://localhost:4000${product.images[0].url}` : `/perfumes/p${imageId}.jpeg`;
+  const image = product.images?.[0]?.url || `/perfumes/p${imageId}.jpeg`;
   const sizes = product.variations || [];
 
   return (

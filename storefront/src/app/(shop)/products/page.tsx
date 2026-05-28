@@ -75,10 +75,10 @@ export default async function ProductsPage({
               const hoverImageId = ((idx + 1) % 5) + 1;
               // Use real DB images if available, else fall back to local placeholder
               const image = product.images?.[0]?.url
-                ? `http://localhost:4000${product.images[0].url}`
+                ? product.images[0].url
                 : `/perfumes/p${imageId}.jpeg`;
               const hoverImage = product.images?.[1]?.url
-                ? `http://localhost:4000${product.images[1].url}`
+                ? product.images[1].url
                 : `/perfumes/p${hoverImageId}.jpeg`;
               
               return (

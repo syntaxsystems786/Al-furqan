@@ -1,5 +1,5 @@
 // Central API helper for storefront
-const API_BASE = 'http://localhost:4000/api';
+const API_BASE = '/api';
 
 export async function fetchCategories() {
   const res = await fetch(`${API_BASE}/categories`, { cache: 'no-store' });

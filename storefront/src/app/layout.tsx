@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Cinzel, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import { CartProvider } from "@/context/CartContext";
-import SmoothScroll from "@/components/SmoothScroll";
-import NoiseOverlay from "@/components/NoiseOverlay";
+
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -40,15 +37,7 @@ export default function RootLayout({
         className={`${montserrat.variable} ${cinzel.variable} ${cormorant.variable} antialiased bg-[#FAFAF8] text-[#1A1A1A] selection:bg-[#8C7A6B] selection:text-[#FAFAF8]`}
         suppressHydrationWarning
       >
-        <NoiseOverlay />
-        <SmoothScroll>
-          <CartProvider>
-            <Navbar />
-            <div className="pt-28">
-              {children}
-            </div>
-          </CartProvider>
-        </SmoothScroll>
+        {children}
       </body>
     </html>
   );

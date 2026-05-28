@@ -269,10 +269,10 @@ export default function Home() {
               const imageId = (idx % 5) + 1;
               const hoverImageId = ((idx + 1) % 5) + 1;
               const image = product.images?.[0]?.url
-                ? `http://localhost:4000${product.images[0].url}`
+                ? product.images[0].url
                 : `/perfumes/p${imageId}.jpeg`;
               const hoverImage = product.images?.[1]?.url
-                ? `http://localhost:4000${product.images[1].url}`
+                ? product.images[1].url
                 : `/perfumes/p${hoverImageId}.jpeg`;
               return (
               <motion.div
