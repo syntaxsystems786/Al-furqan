@@ -73,7 +73,7 @@ export async function apiDeleteProduct(id: number) {
     headers: authHeaders(),
   });
   if (!res.ok) throw new Error('Failed to delete product');
-  return res.json();
+  return true;
 }
 
 export async function apiGetOrders() {
