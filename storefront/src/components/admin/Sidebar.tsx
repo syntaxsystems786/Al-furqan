@@ -45,7 +45,7 @@ export default function Sidebar() {
         <p className="text-[#8C7A6B] text-[10px] mt-2 tracking-[0.3em] uppercase">Boutique Admin</p>
       </div>
 
-      <nav className="flex-1 px-4 py-8 space-y-2">
+      <nav className="flex-1 px-4 py-8 space-y-2 overflow-y-auto hide-scrollbar">
         {menuItems.map((item) => {
           const Icon = item.icon;
           const isActive = pathname === item.href || (item.href !== '/admin' && pathname.startsWith(item.href));

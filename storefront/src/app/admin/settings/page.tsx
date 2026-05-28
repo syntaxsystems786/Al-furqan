@@ -19,6 +19,7 @@ export default function AdminSettings() {
   const [journalEntries, setJournalEntries] = useState<any[]>([]);
   const [savingCMS, setSavingCMS] = useState(false);
   const [loadingCMS, setLoadingCMS] = useState(true);
+  const [allProducts, setAllProducts] = useState<any[]>([]);
 
   const heroInputRef = useRef<HTMLInputElement>(null);
 
@@ -43,7 +44,21 @@ export default function AdminSettings() {
         setLoadingCMS(false);
       }
     }
+    
+    async function fetchAllProducts() {
+      try {
+        const res = await fetch('/api/products');
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          setAllProducts(data);
+        }
+      } catch (err) {
+        console.error("Failed to fetch products for settings", err);
+      }
+    }
+
     loadSettings();
+    fetchAllProducts();
   }, []);
 
   const handleChangePassword = async (e: React.FormEvent) => {
@@ -130,6 +145,31 @@ export default function AdminSettings() {
       if (res.ok && data.url) {
         setHeroImage(data.url);
         showToast('Image uploaded successfully');
+      } else {
+        throw new Error(data.error || 'Upload failed');
+      }
+    } catch (err: any) {
+      showToast(err.message, 'error');
+    }
+  };
+
+  const handleJournalImageUpload = async (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    try {
+      showToast('Uploading image...', 'success');
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.json();
+      if (res.ok && data.url) {
+        updateJournalEntry(index, 'image', data.url);
+        showToast('Journal image uploaded');
       } else {
         throw new Error(data.error || 'Upload failed');
       }
@@ -240,11 +280,44 @@ export default function AdminSettings() {
             {/* Featured Products */}
             <div>
               <h3 className="text-sm font-serif text-[#F8F8F8] tracking-widest uppercase mb-4">Signature Archives (Featured Products)</h3>
-              <label className={labelClass}>Product IDs (Comma separated)</label>
-              <input type="text" value={featuredProducts} onChange={e => setFeaturedProducts(e.target.value)} className={inputClass} placeholder="1, 4, 12, 15" />
-              <p className="text-gray-500 text-xs mt-3 leading-relaxed tracking-wide">
-                Enter the IDs of the products you want to display on the homepage carousel. You can find product IDs in the Products tab URL when editing.
+              <p className="text-gray-500 text-xs mb-4 leading-relaxed tracking-wide">
+                Select the products you want to display on the homepage carousel.
               </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-h-64 overflow-y-auto pr-4 custom-scrollbar">
+                {allProducts.length === 0 ? (
+                  <p className="text-xs text-gray-500">No products found. Add products first.</p>
+                ) : (
+                  allProducts.map((product) => {
+                    const selectedIds = featuredProducts.split(',').map(id => id.trim()).filter(Boolean);
+                    const isSelected = selectedIds.includes(product.id.toString());
+                    
+                    return (
+                      <label key={product.id} className={`flex items-start space-x-3 p-3 cursor-pointer border transition-colors ${isSelected ? 'bg-[#D4AF37]/10 border-[#D4AF37]' : 'bg-[#0B0B0B] border-[#D4AF37]/10 hover:border-[#D4AF37]/40'}`}>
+                        <div className="mt-0.5">
+                          <input 
+                            type="checkbox" 
+                            checked={isSelected}
+                            className="accent-[#D4AF37]"
+                            onChange={(e) => {
+                              let newIds = [...selectedIds];
+                              if (e.target.checked) {
+                                newIds.push(product.id.toString());
+                              } else {
+                                newIds = newIds.filter(id => id !== product.id.toString());
+                              }
+                              setFeaturedProducts(newIds.join(', '));
+                            }}
+                          />
+                        </div>
+                        <div>
+                          <p className="text-xs font-bold text-[#F8F8F8] truncate">{product.name}</p>
+                          <p className="text-[10px] text-[#D4AF37] uppercase tracking-widest mt-1">ID: {product.id} • Rs. {product.price}</p>
+                        </div>
+                      </label>
+                    );
+                  })
+                )}
+              </div>
             </div>
 
             <hr className="border-[#D4AF37]/10" />
@@ -274,8 +347,30 @@ export default function AdminSettings() {
                         <input type="text" value={entry.date} onChange={e => updateJournalEntry(idx, 'date', e.target.value)} className={inputClass} placeholder="e.g. Oct 12, 2026" />
                       </div>
                       <div className="md:col-span-2">
-                        <label className={labelClass}>Image URL</label>
-                        <input type="text" value={entry.image} onChange={e => updateJournalEntry(idx, 'image', e.target.value)} className={inputClass} placeholder="/perfumes/p3.jpeg" />
+                        <label className={labelClass}>Image</label>
+                        <div className="flex space-x-4">
+                          {entry.image && (
+                            <img src={entry.image} alt="Preview" className="w-16 h-16 object-cover border border-[#D4AF37]/30" />
+                          )}
+                          <div className="flex-1">
+                            <input type="text" value={entry.image} onChange={e => updateJournalEntry(idx, 'image', e.target.value)} className={inputClass} placeholder="/perfumes/p3.jpeg" />
+                            <div className="mt-2 relative inline-block">
+                              <input 
+                                type="file" 
+                                id={`journal-upload-${idx}`} 
+                                className="hidden" 
+                                accept="image/*"
+                                onChange={(e) => handleJournalImageUpload(idx, e)} 
+                              />
+                              <label 
+                                htmlFor={`journal-upload-${idx}`} 
+                                className="cursor-pointer text-[10px] text-[#D4AF37] border border-[#D4AF37]/50 px-3 py-1 hover:bg-[#D4AF37] hover:text-[#0B0B0B] transition-colors uppercase tracking-widest flex items-center inline-flex"
+                              >
+                                <Upload className="w-3 h-3 mr-2" /> Upload Instead
+                              </label>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
