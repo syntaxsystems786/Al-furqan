@@ -19,7 +19,8 @@ export default async function ProductsPage({
   let products: any[] = [];
   try {
     products = await fetchProducts(category);
-  } catch {
+  } catch (error) {
+    console.error("Failed to fetch products:", error);
     // backend not running – show empty state
   }
 

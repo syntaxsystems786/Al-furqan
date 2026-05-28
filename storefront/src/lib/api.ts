@@ -1,5 +1,11 @@
 // Central API helper for storefront
-const API_BASE = '/api';
+export const getBaseUrl = () => {
+  if (typeof window !== 'undefined') return '';
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return `http://localhost:${process.env.PORT || 3000}`;
+};
+
+const API_BASE = `${getBaseUrl()}/api`;
 
 export async function fetchCategories() {
   const res = await fetch(`${API_BASE}/categories`, { cache: 'no-store' });
