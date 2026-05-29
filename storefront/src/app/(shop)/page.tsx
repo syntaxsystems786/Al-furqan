@@ -299,16 +299,16 @@ export default function Home() {
               >
                 <Link href={`/products/${product.id}`} className="block relative aspect-[4/5] bg-[#FFFFFF] overflow-hidden mb-6 border border-[#8C7A6B]/10">
                   <img
-                    src={hoverImage}
-                    alt={`${product.name} box`}
-                    className="absolute inset-0 w-full h-full object-cover mix-blend-multiply transition-transform duration-700 ease-out scale-100 group-hover:scale-110 z-0"
-                  />
-                  <img
                     src={image}
                     alt={product.name}
-                    className="absolute inset-0 w-full h-full object-cover mix-blend-multiply transition-opacity duration-500 ease-out group-hover:opacity-0 z-10 bg-white"
+                    className="absolute inset-0 w-full h-full object-cover mix-blend-multiply transition-opacity duration-500 ease-out group-hover:opacity-0"
                   />
-                  <div className="absolute inset-0 bg-[#FAFAF8] opacity-10 pointer-events-none z-20" />
+                  <img
+                    src={hoverImage}
+                    alt={`${product.name} box`}
+                    className="absolute inset-0 w-full h-full object-cover mix-blend-multiply transition-all duration-700 ease-out opacity-0 scale-105 group-hover:opacity-90 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-[#FAFAF8] opacity-10 pointer-events-none" />
                   <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-white/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-500 flex justify-between items-center pointer-events-none">
                     <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#1A1A1A]">View Details</span>
                     <ArrowRight className="w-4 h-4 text-[#8C7A6B]" />
