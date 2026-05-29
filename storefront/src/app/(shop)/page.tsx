@@ -301,13 +301,11 @@ export default function Home() {
                   <img
                     src={image}
                     alt={product.name}
-                    loading="lazy"
                     className="absolute inset-0 w-full h-full object-cover mix-blend-multiply transition-opacity duration-500 ease-out group-hover:opacity-0"
                   />
                   <img
                     src={hoverImage}
                     alt={`${product.name} box`}
-                    loading="lazy"
                     className="absolute inset-0 w-full h-full object-cover mix-blend-multiply transition-all duration-700 ease-out opacity-0 scale-105 group-hover:opacity-90 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-[#FAFAF8] opacity-10 pointer-events-none" />
