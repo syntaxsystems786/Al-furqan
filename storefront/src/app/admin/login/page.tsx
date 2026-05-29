@@ -32,7 +32,7 @@ export default function AdminLogin() {
       <div className="bg-white border border-[#8C7A6B]/20 p-12 w-full max-w-md shadow-lg">
         <div className="text-center mb-12">
           <h1 className="text-3xl font-serif tracking-[0.3em] text-[#1A1A1A] uppercase mb-3">Al Furqan</h1>
-          <p className="text-gray-500 text-xs tracking-[0.3em] uppercase">Boutique Admin Portal</p>
+          <p className="text-gray-500 text-xs tracking-[0.3em] uppercase">Admin Portal</p>
           <div className="w-16 h-px bg-[#8C7A6B]/40 mx-auto mt-6" />
         </div>
 
@@ -70,7 +70,7 @@ export default function AdminLogin() {
             disabled={loading}
             className="w-full bg-[#1A1A1A] text-[#FAFAF8] font-bold py-4 tracking-[0.2em] uppercase text-xs hover:bg-[#8C7A6B] transition-colors mt-8 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? 'Authenticating...' : 'Enter Boutique'}
+            {loading ? 'Authenticating...' : 'Sign In'}
           </button>
         </form>
         <p className="text-center text-[10px] text-gray-400 mt-8 tracking-widest uppercase">Default: admin / admin123</p>
