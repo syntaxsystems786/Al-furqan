@@ -70,7 +70,7 @@ export default async function ProductsPage({
       <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-24 py-16">
         <div className="flex flex-col md:flex-row justify-between items-end mb-32 border-b border-[#8C7A6B]/20 pb-8 pt-16">
           <div>
-            <h1 className="text-3xl sm:text-5xl md:text-7xl font-serif text-[#1A1A1A] mb-4 uppercase tracking-[0.1em] sm:tracking-[0.2em]">
+            <h1 className="text-5xl md:text-7xl font-serif text-[#1A1A1A] mb-4 uppercase tracking-[0.2em]">
               <TextReveal>{title}</TextReveal>
             </h1>
             <p className="text-gray-500 font-bold text-xs tracking-[0.3em] uppercase">{filteredProducts.length} Olfactory Masterpieces</p>
@@ -85,7 +85,7 @@ export default async function ProductsPage({
             <p className="text-2xl text-gray-500 font-serif mb-4 tracking-[0.2em] uppercase">No Fragrances Found</p>
             <p className="text-gray-600 font-light mb-8">
               {products.length === 0
-                ? 'The store is being set up.'
+                ? 'The boutique is being set up.'
                 : 'Try a different filter or search term.'}
             </p>
             <Link href="/products" className="px-8 py-4 border border-[#8C7A6B] text-[#8C7A6B] font-bold uppercase text-xs tracking-[0.2em] hover:bg-[#8C7A6B] hover:text-[#FAFAF8] transition-colors">
@@ -93,7 +93,7 @@ export default async function ProductsPage({
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 sm:gap-x-12 gap-y-16 sm:gap-y-32">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-32">
             {filteredProducts.map((product: any, idx: number) => {
               const imageId = (idx % 5) + 1;
               const hoverImageId = ((idx + 1) % 5) + 1;
@@ -103,7 +103,7 @@ export default async function ProductsPage({
                 : `/perfumes/p${imageId}.jpeg`;
               const hoverImage = product.images?.[1]?.url
                 ? product.images[1].url
-                : (product.images?.[0]?.url ? product.images[0].url : `/perfumes/p${hoverImageId}.jpeg`);
+                : `/perfumes/p${hoverImageId}.jpeg`;
               
               return (
                 <Link href={`/products/${product.id}`} key={product.id} className="group flex flex-col">
@@ -112,24 +112,22 @@ export default async function ProductsPage({
                     <img
                       src={image}
                       alt={product.name}
-                      loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ease-out group-hover:opacity-0 mix-blend-multiply"
                     />
                     {/* Hover / box image — fades in and scales on hover */}
                     <img
                       src={hoverImage}
                       alt={`${product.name} box`}
-                      loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out opacity-0 scale-105 group-hover:opacity-90 group-hover:scale-110 mix-blend-multiply"
                     />
                     <div className="absolute inset-0 bg-[#FAFAF8] opacity-10 transition-opacity duration-1000 pointer-events-none" />
                   </div>
                   <div className="text-center">
-                    <h3 className="text-sm sm:text-2xl font-serif text-[#1A1A1A] group-hover:text-[#8C7A6B] transition-colors uppercase tracking-[0.1em] sm:tracking-[0.2em] leading-tight mb-1 sm:mb-2">{product.name}</h3>
+                    <h3 className="text-2xl font-serif text-[#1A1A1A] group-hover:text-[#8C7A6B] transition-colors uppercase tracking-[0.2em] leading-tight mb-2">{product.name}</h3>
                     {product.category && (
-                      <p className="mt-1 sm:mt-2 text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-gray-500">{product.category.name}</p>
+                      <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500">{product.category.name}</p>
                     )}
-                    <p className="mt-2 sm:mt-4 text-[#8C7A6B] font-medium tracking-widest text-xs sm:text-sm">Rs. {product.price.toLocaleString()}</p>
+                    <p className="mt-4 text-[#8C7A6B] font-medium tracking-widest text-sm">Rs. {product.price.toLocaleString()}</p>
                   </div>
                 </Link>
               );
