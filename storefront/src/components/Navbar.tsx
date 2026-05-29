@@ -118,25 +118,12 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <div className={`lg:hidden flex items-center space-x-6 text-[#FAFAF8] ${isSearchOpen ? 'hidden' : 'flex'}`}>
-            <button onClick={() => setIsSearchOpen(!isSearchOpen)} className="hover:text-[#8C7A6B] transition-colors">
-              <Search className="w-5 h-5" />
-            </button>
-            <Link href="/cart" className="relative hover:text-[#8C7A6B] transition-colors">
-              <ShoppingBag className="w-5 h-5" />
-              {isLoaded && cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-[#8C7A6B] text-[#FAFAF8] text-[8px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
-                  {cartCount}
-                </span>
-              )}
-            </Link>
-            <button 
-              className="hover:text-[#8C7A6B] transition-colors"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
+          <button 
+            className={`lg:hidden text-[#FAFAF8] hover:text-[#8C7A6B] transition-colors ${isSearchOpen ? 'hidden' : 'block'}`}
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
       </div>
 
