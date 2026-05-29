@@ -108,19 +108,19 @@ export default async function ProductsPage({
               return (
                 <Link href={`/products/${product.id}`} key={product.id} className="group flex flex-col">
                   <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#FFFFFF] mb-8 border border-[#8C7A6B]/10">
-                    {/* Primary image — fades out on hover */}
-                    <img
-                      src={image}
-                      alt={product.name}
-                      className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ease-out group-hover:opacity-0 mix-blend-multiply"
-                    />
-                    {/* Hover / box image — fades in and scales on hover */}
+                    {/* Hover / box image — always opaque but behind */}
                     <img
                       src={hoverImage}
                       alt={`${product.name} box`}
-                      className="absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out opacity-0 scale-105 group-hover:opacity-90 group-hover:scale-110 mix-blend-multiply"
+                      className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out scale-100 group-hover:scale-110 mix-blend-multiply z-0"
                     />
-                    <div className="absolute inset-0 bg-[#FAFAF8] opacity-10 transition-opacity duration-1000 pointer-events-none" />
+                    {/* Primary image — fades out on hover to reveal image behind */}
+                    <img
+                      src={image}
+                      alt={product.name}
+                      className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ease-out group-hover:opacity-0 mix-blend-multiply z-10 bg-white"
+                    />
+                    <div className="absolute inset-0 bg-[#FAFAF8] opacity-10 transition-opacity duration-1000 pointer-events-none z-20" />
                   </div>
                   <div className="text-center">
                     <h3 className="text-sm sm:text-2xl font-serif text-[#1A1A1A] group-hover:text-[#8C7A6B] transition-colors uppercase tracking-[0.1em] sm:tracking-[0.2em] leading-tight mb-1 sm:mb-2">{product.name}</h3>
