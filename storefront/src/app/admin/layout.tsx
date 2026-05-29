@@ -21,7 +21,7 @@ export default function AdminLayout({
   return (
     <div className={`${playfair.variable} flex min-h-screen bg-[#FAFAF8]`}>
       <Sidebar />
-      <main className="flex-1 md:ml-64 p-4 md:p-8 min-h-screen pt-20 md:pt-8 w-full overflow-x-hidden">
+      <main className="flex-1 ml-64 p-8 min-h-screen">
         {children}
       </main>
     </div>

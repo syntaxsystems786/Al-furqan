@@ -100,7 +100,7 @@ export default function Cart() {
   return (
     <div className="min-h-screen bg-[#FAFAF8] pt-32 pb-24">
       <div className="max-w-[1200px] mx-auto px-6 sm:px-12">
-        <h1 className="text-3xl sm:text-5xl font-serif text-[#1A1A1A] tracking-[0.1em] sm:tracking-[0.2em] uppercase mb-16">
+        <h1 className="text-5xl font-serif text-[#1A1A1A] tracking-[0.2em] uppercase mb-16">
           {checkoutStep === 'cart' ? 'Your Bag' : 'Checkout'}
         </h1>
 

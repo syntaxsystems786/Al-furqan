@@ -168,8 +168,8 @@ export default function AdminProducts() {
 
       <div className="flex justify-between items-center mb-10">
         <div>
-          <h1 className="text-2xl sm:text-4xl font-serif text-[#D4AF37] tracking-[0.1em] sm:tracking-[0.2em] uppercase">Fragrances</h1>
-          <p className="text-gray-500 mt-2 text-sm tracking-widest">{products.length} fragrances in your store</p>
+          <h1 className="text-4xl font-serif text-[#D4AF37] tracking-[0.2em] uppercase">Fragrances</h1>
+          <p className="text-gray-500 mt-2 text-sm tracking-widest">{products.length} fragrances in your boutique</p>
         </div>
         <button
           onClick={openCreate}
@@ -180,11 +180,11 @@ export default function AdminProducts() {
         </button>
       </div>
 
-      <div className="bg-[#111] border border-[#D4AF37]/20 overflow-x-auto">
+      <div className="bg-[#111] border border-[#D4AF37]/20 overflow-hidden">
         {loading ? (
           <div className="p-16 text-center text-[#D4AF37]/60 font-light tracking-[0.3em] uppercase text-sm">Loading fragrances...</div>
         ) : (
-          <table className="w-full text-left min-w-[700px]">
+          <table className="w-full text-left">
             <thead className="border-b border-[#D4AF37]/20">
               <tr className="text-[10px] uppercase tracking-[0.2em] text-[#D4AF37]/60">
                 <th className="p-5 font-medium">Fragrance</th>

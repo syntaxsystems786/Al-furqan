@@ -58,7 +58,7 @@ export default function AdminOrders() {
       )}
 
       <div className="mb-10">
-        <h1 className="text-2xl sm:text-4xl font-serif text-[#1A1A1A] tracking-[0.1em] sm:tracking-[0.15em] uppercase">Orders</h1>
+        <h1 className="text-4xl font-serif text-[#1A1A1A] tracking-[0.15em] uppercase">Orders</h1>
         <p className="text-gray-500 mt-2 text-sm tracking-wide">{orders.length} total orders</p>
       </div>
 
@@ -75,13 +75,13 @@ export default function AdminOrders() {
         ))}
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-6">
+      <div className="flex gap-6">
         {/* Orders Table */}
-        <div className={`flex-1 bg-white border border-[#8C7A6B]/15 overflow-x-auto shadow-sm ${selectedOrder ? 'hidden lg:block' : ''}`}>
+        <div className={`flex-1 bg-white border border-[#8C7A6B]/15 overflow-hidden shadow-sm ${selectedOrder ? 'hidden lg:block' : ''}`}>
           {loading ? (
             <div className="p-16 text-center text-[#8C7A6B] tracking-[0.3em] uppercase text-sm font-bold">Loading orders...</div>
           ) : (
-          <table className="w-full text-left min-w-[700px]">
+            <table className="w-full text-left">
               <thead className="border-b border-[#8C7A6B]/10 bg-[#FAFAF8]">
                 <tr className="text-[10px] uppercase tracking-[0.2em] text-[#8C7A6B]">
                   <th className="p-5 font-bold">Order</th>
