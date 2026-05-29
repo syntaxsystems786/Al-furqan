@@ -112,14 +112,12 @@ export default async function ProductsPage({
                     <img
                       src={image}
                       alt={product.name}
-                      loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ease-out group-hover:opacity-0 mix-blend-multiply"
                     />
                     {/* Hover / box image — fades in and scales on hover */}
                     <img
                       src={hoverImage}
                       alt={`${product.name} box`}
-                      loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out opacity-0 scale-105 group-hover:opacity-90 group-hover:scale-110 mix-blend-multiply"
                     />
                     <div className="absolute inset-0 bg-[#FAFAF8] opacity-10 transition-opacity duration-1000 pointer-events-none" />
