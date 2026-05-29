@@ -70,7 +70,7 @@ export default async function ProductsPage({
       <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-24 py-16">
         <div className="flex flex-col md:flex-row justify-between items-end mb-32 border-b border-[#8C7A6B]/20 pb-8 pt-16">
           <div>
-            <h1 className="text-3xl sm:text-5xl md:text-7xl font-serif text-[#1A1A1A] mb-4 uppercase tracking-[0.1em] sm:tracking-[0.2em]">
+            <h1 className="text-5xl md:text-7xl font-serif text-[#1A1A1A] mb-4 uppercase tracking-[0.2em]">
               <TextReveal>{title}</TextReveal>
             </h1>
             <p className="text-gray-500 font-bold text-xs tracking-[0.3em] uppercase">{filteredProducts.length} Olfactory Masterpieces</p>
@@ -85,7 +85,7 @@ export default async function ProductsPage({
             <p className="text-2xl text-gray-500 font-serif mb-4 tracking-[0.2em] uppercase">No Fragrances Found</p>
             <p className="text-gray-600 font-light mb-8">
               {products.length === 0
-                ? 'The store is being set up.'
+                ? 'The boutique is being set up.'
                 : 'Try a different filter or search term.'}
             </p>
             <Link href="/products" className="px-8 py-4 border border-[#8C7A6B] text-[#8C7A6B] font-bold uppercase text-xs tracking-[0.2em] hover:bg-[#8C7A6B] hover:text-[#FAFAF8] transition-colors">

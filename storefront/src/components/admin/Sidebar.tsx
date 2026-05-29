@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { LayoutDashboard, Package, ShoppingCart, LogOut, Menu, X } from 'lucide-react';
+import { LayoutDashboard, Package, ShoppingCart, LogOut } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const menuItems = [
@@ -17,7 +17,6 @@ export default function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const [adminUser, setAdminUser] = useState('Admin');
-  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const user = localStorage.getItem('admin_user');
@@ -28,8 +27,6 @@ export default function Sidebar() {
     if (!token && pathname !== '/admin/login') {
       router.push('/admin/login');
     }
-    // Close sidebar on route change on mobile
-    setIsOpen(false);
   }, [pathname, router]);
 
   const handleLogout = async () => {
@@ -42,66 +39,47 @@ export default function Sidebar() {
   if (pathname === '/admin/login') return null;
 
   return (
-    <>
-      {/* Mobile Toggle Button */}
-      <button 
-        onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden fixed top-4 left-4 z-[60] p-2 bg-[#1A1A1A] text-[#D4AF37] rounded-sm shadow-md"
-      >
-        {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-      </button>
+    <aside className="fixed inset-y-0 left-0 w-64 bg-white border-r border-[#8C7A6B]/15 text-[#1A1A1A] flex flex-col z-50 shadow-sm">
+      <div className="p-6 border-b border-[#8C7A6B]/10 text-center">
+        <h1 className="text-2xl font-serif tracking-widest text-[#1A1A1A] uppercase">Al Furqan</h1>
+        <p className="text-[#8C7A6B] text-[10px] mt-2 tracking-[0.3em] uppercase">Boutique Admin</p>
+      </div>
 
-      {/* Overlay */}
-      {isOpen && (
-        <div 
-          className="md:hidden fixed inset-0 bg-black/50 z-[40]"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
+      <nav className="flex-1 px-4 py-8 space-y-2 overflow-y-auto hide-scrollbar">
+        {menuItems.map((item) => {
+          const Icon = item.icon;
+          const isActive = pathname === item.href || (item.href !== '/admin' && pathname.startsWith(item.href));
 
-      <aside className={`fixed inset-y-0 left-0 w-64 bg-white border-r border-[#8C7A6B]/15 text-[#1A1A1A] flex flex-col z-50 shadow-sm transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
-        <div className="p-6 border-b border-[#8C7A6B]/10 text-center mt-12 md:mt-0">
-          <h1 className="text-2xl font-serif tracking-widest text-[#1A1A1A] uppercase">Al Furqan</h1>
-          <p className="text-[#8C7A6B] text-[10px] mt-2 tracking-[0.3em] uppercase">Admin</p>
+          return (
+            <Link
+              key={item.name}
+              href={item.href}
+              className={`flex items-center px-4 py-4 transition-all duration-300 border ${
+                isActive
+                  ? 'bg-[#8C7A6B]/10 text-[#8C7A6B] border-[#8C7A6B]/30'
+                  : 'border-transparent text-gray-500 hover:text-[#8C7A6B] hover:bg-[#FAFAF8]'
+              }`}
+            >
+              <Icon className="w-5 h-5 mr-4" />
+              <span className="font-bold tracking-widest uppercase text-xs">{item.name}</span>
+            </Link>
+          );
+        })}
+      </nav>
+
+      <div className="p-4 border-t border-[#8C7A6B]/10">
+        <div className="px-4 py-2 mb-4">
+          <p className="text-[10px] text-[#8C7A6B] uppercase tracking-[0.2em] mb-1 font-bold">Logged in as</p>
+          <p className="text-[#1A1A1A] font-serif text-lg tracking-widest">{adminUser}</p>
         </div>
-
-        <nav className="flex-1 px-4 py-8 space-y-2 overflow-y-auto hide-scrollbar">
-          {menuItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = pathname === item.href || (item.href !== '/admin' && pathname.startsWith(item.href));
-
-            return (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className={`flex items-center px-4 py-4 transition-all duration-300 border ${
-                  isActive
-                    ? 'bg-[#8C7A6B]/10 text-[#8C7A6B] border-[#8C7A6B]/30'
-                    : 'border-transparent text-gray-500 hover:text-[#8C7A6B] hover:bg-[#FAFAF8]'
-                }`}
-              >
-                <Icon className="w-5 h-5 mr-4" />
-                <span className="font-bold tracking-widest uppercase text-xs">{item.name}</span>
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="p-4 border-t border-[#8C7A6B]/10">
-          <div className="px-4 py-2 mb-4">
-            <p className="text-[10px] text-[#8C7A6B] uppercase tracking-[0.2em] mb-1 font-bold">Logged in as</p>
-            <p className="text-[#1A1A1A] font-serif text-lg tracking-widest">{adminUser}</p>
-          </div>
-          <button
-            onClick={handleLogout}
-            className="flex items-center w-full px-4 py-4 text-gray-400 hover:text-[#8C7A6B] hover:bg-[#FAFAF8] transition-colors border border-transparent hover:border-[#8C7A6B]/20"
-          >
-            <LogOut className="w-5 h-5 mr-4" />
-            <span className="font-bold tracking-widest uppercase text-xs">Logout</span>
-          </button>
-        </div>
-      </aside>
-    </>
+        <button
+          onClick={handleLogout}
+          className="flex items-center w-full px-4 py-4 text-gray-400 hover:text-[#8C7A6B] hover:bg-[#FAFAF8] transition-colors border border-transparent hover:border-[#8C7A6B]/20"
+        >
+          <LogOut className="w-5 h-5 mr-4" />
+          <span className="font-bold tracking-widest uppercase text-xs">Logout</span>
+        </button>
+      </div>
+    </aside>
   );
 }

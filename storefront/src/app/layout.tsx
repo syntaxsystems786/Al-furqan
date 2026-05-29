@@ -22,7 +22,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Al Furqan Perfumes - Luxury Fragrance Store",
+  title: "Al Furqan Perfumes - Ultra Luxury Boutique",
   description: "Exquisite fragrances for the elite.",
 };
 
