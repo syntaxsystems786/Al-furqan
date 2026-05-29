@@ -48,7 +48,7 @@ export default function Navbar() {
           
           <div className={`hidden lg:flex items-center space-x-10 transition-opacity duration-300 ${isSearchOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
             <Link href="/products" className="text-xs font-bold uppercase tracking-[0.2em] text-[#FAFAF8] hover:text-[#8C7A6B] transition-colors">
-              Boutique
+              Shop
             </Link>
             {categories.map((c: any) => (
               <Link 
