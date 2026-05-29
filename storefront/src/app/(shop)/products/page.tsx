@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { fetchProducts } from '@/lib/api';
+import { prisma } from '@/lib/prisma';
 import SortDropdown from '@/components/SortDropdown';
 import TextReveal from '@/components/TextReveal';
 
@@ -18,7 +18,30 @@ export default async function ProductsPage({
 
   let products: any[] = [];
   try {
-    products = await fetchProducts(category);
+    const dbProducts = await prisma.product.findMany({
+      where: category ? {
+        category: {
+          name: {
+            equals: category,
+            mode: 'insensitive',
+          }
+        }
+      } : undefined,
+      include: {
+        category: true,
+        images: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      }
+    });
+
+    // Serialize dates for client components if needed, or just map them
+    products = dbProducts.map(p => ({
+      ...p,
+      createdAt: p.createdAt.toISOString(),
+      updatedAt: p.updatedAt.toISOString(),
+    }));
   } catch (error) {
     console.error("Failed to fetch products:", error);
     // backend not running – show empty state
