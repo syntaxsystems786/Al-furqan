@@ -3,6 +3,8 @@ import { CartProvider } from "@/context/CartContext";
 import SmoothScroll from "@/components/SmoothScroll";
 import NoiseOverlay from "@/components/NoiseOverlay";
 
+export const revalidate: number = 900;
+
 export default function ShopLayout({
   children,
 }: Readonly<{
