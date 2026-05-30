@@ -62,7 +62,7 @@ export default function Cart() {
     return (
       <div className="min-h-screen bg-[#FAFAF8] flex flex-col items-center justify-center">
         <ShoppingBag className="w-16 h-16 text-[#8C7A6B]/30 mb-6" />
-        <h1 className="text-3xl font-serif text-[#1A1A1A] tracking-[0.2em] uppercase mb-4">Your Bag is Empty</h1>
+        <h1 className="text-3xl md:text-5xl font-serif text-[#1A1A1A] tracking-[0.1em] sm:tracking-[0.2em] uppercase mb-8 sm:mb-16">Your Bag is Empty</h1>
         <p className="text-gray-500 mb-8 font-light tracking-wide">Explore our collections to find your signature scent.</p>
         <Link href="/products" className="px-8 py-4 border border-[#8C7A6B] text-[#8C7A6B] text-xs font-bold tracking-[0.2em] uppercase hover:bg-[#8C7A6B] hover:text-[#FAFAF8] transition-colors">
           Explore Fragrances

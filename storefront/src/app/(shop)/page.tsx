@@ -106,7 +106,7 @@ export default function Home() {
               initial={{ y: "105%" }}
               animate={{ y: "0%" }}
               transition={{ ease: [0.16, 1, 0.3, 1], duration: 1.2, delay: 0.2 }}
-              className="text-[clamp(3.5rem,8vw,7rem)] leading-[0.88] tracking-tight text-[#1C1C1C] uppercase"
+              className="text-[clamp(2.5rem,8vw,7rem)] leading-[0.88] tracking-tight text-[#1C1C1C] uppercase"
               style={{ fontFamily: "var(--font-cormorant)", fontWeight: 300 }}
             >
               Al Furqan
@@ -117,7 +117,7 @@ export default function Home() {
               initial={{ y: "105%" }}
               animate={{ y: "0%" }}
               transition={{ ease: [0.16, 1, 0.3, 1], duration: 1.2, delay: 0.35 }}
-              className="text-[clamp(3.5rem,8vw,7rem)] leading-[0.88] tracking-tight text-[#8C7A6B] uppercase italic"
+              className="text-[clamp(2.5rem,8vw,7rem)] leading-[0.88] tracking-tight text-[#8C7A6B] uppercase italic"
               style={{ fontFamily: "var(--font-cormorant)", fontWeight: 300 }}
             >
               Perfumes
@@ -269,7 +269,7 @@ export default function Home() {
           >
             <div>
               <motion.h3 variants={fadeUp} className="text-xs font-bold tracking-[0.3em] text-[#8C7A6B] uppercase mb-4">Curated Selection</motion.h3>
-              <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-serif text-[#1A1A1A] tracking-tight">The Signature Archives</motion.h2>
+              <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl font-serif text-[#1A1A1A] tracking-tight">The Signature Archives</motion.h2>
             </div>
             <motion.div variants={fadeUp}>
               <Link href="/products" className="text-xs font-bold uppercase tracking-[0.2em] text-[#1A1A1A] border-b border-[#8C7A6B]/30 hover:border-[#8C7A6B] pb-1 transition-colors mt-6 md:mt-0 inline-block">
@@ -360,7 +360,7 @@ export default function Home() {
             className="w-full lg:w-1/2"
           >
             <motion.h3 variants={fadeUp} className="text-xs font-bold tracking-[0.3em] text-[#8C7A6B] uppercase mb-6">Our Philosophy</motion.h3>
-            <motion.h2 variants={fadeUp} className="text-4xl lg:text-6xl font-serif text-[#1A1A1A] leading-[1.1] mb-10">
+            <motion.h2 variants={fadeUp} className="text-3xl lg:text-6xl font-serif text-[#1A1A1A] leading-[1.1] mb-10">
               The Alchemy of <br />
               <span className="italic text-gray-400">Nature & Time.</span>
             </motion.h2>
@@ -417,7 +417,7 @@ export default function Home() {
           <h3 className="text-[10px] font-bold tracking-[0.4em] text-[#8C7A6B] uppercase mb-8" style={{ fontFamily: "var(--font-montserrat)" }}>
             Private Atelier
           </h3>
-          <h2 className="text-5xl lg:text-7xl mb-10" style={{ fontFamily: "var(--font-cormorant)", fontWeight: 300 }}>
+          <h2 className="text-3xl lg:text-7xl mb-10" style={{ fontFamily: "var(--font-cormorant)", fontWeight: 300 }}>
             <span className="italic text-[#D4AF37]">Custom Made</span> Perfumes
           </h2>
           <p className="text-sm text-gray-400 font-light leading-[2] max-w-2xl mx-auto mb-14" style={{ fontFamily: "var(--font-montserrat)" }}>
@@ -442,7 +442,7 @@ export default function Home() {
           <div className="flex justify-between items-end mb-16 border-b border-[#1A1A1A]/10 pb-8">
             <div>
               <h3 className="text-[10px] font-bold tracking-[0.4em] text-[#8C7A6B] uppercase mb-4" style={{ fontFamily: "var(--font-montserrat)" }}>Editorial</h3>
-              <h2 className="text-4xl text-[#1A1A1A]" style={{ fontFamily: "var(--font-cormorant)", fontWeight: 400 }}>The Journal</h2>
+              <h2 className="text-3xl md:text-4xl text-[#1A1A1A]" style={{ fontFamily: "var(--font-cormorant)", fontWeight: 400 }}>The Journal</h2>
             </div>
             <Link href="#" className="text-[10px] uppercase tracking-[0.2em] text-[#1A1A1A] border-b border-[#1A1A1A] pb-1">
               Read All Entries

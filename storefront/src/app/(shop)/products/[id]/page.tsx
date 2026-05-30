@@ -129,7 +129,7 @@ export default function ProductDetail() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#1A1A1A] mb-6 uppercase tracking-widest leading-tight">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-[#1A1A1A] mb-6 uppercase tracking-widest leading-tight">
               {product.name}
             </h1>
             <p className="text-2xl font-light text-[#8C7A6B] tracking-widest mb-8">Rs. {product.price?.toLocaleString()}</p>
