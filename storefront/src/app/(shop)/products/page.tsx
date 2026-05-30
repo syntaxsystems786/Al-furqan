@@ -93,7 +93,7 @@ export default async function ProductsPage({
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-32">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 sm:gap-x-12 gap-y-16 sm:gap-y-32">
             {filteredProducts.map((product: any, idx: number) => {
               const imageId = (idx % 5) + 1;
               const hoverImageId = ((idx + 1) % 5) + 1;

@@ -118,7 +118,10 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <div className={`lg:hidden flex items-center space-x-6 text-[#FAFAF8] ${isSearchOpen ? 'hidden' : 'flex'}`}>
+          <div className={`lg:hidden flex items-center space-x-5 text-[#FAFAF8] ${isSearchOpen ? 'hidden' : 'flex'}`}>
+            <Link href="/products" className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#D4AF37] hover:text-[#FAFAF8] transition-colors border border-[#D4AF37]/30 bg-[#1A1A1A] px-3 py-1.5 rounded-sm shadow-sm">
+              Shop
+            </Link>
             <button onClick={() => setIsSearchOpen(!isSearchOpen)} className="hover:text-[#8C7A6B] transition-colors">
               <Search className="w-5 h-5" />
             </button>
@@ -131,7 +134,7 @@ export default function Navbar() {
               )}
             </Link>
             <button 
-              className="hover:text-[#8C7A6B] transition-colors"
+              className="hover:text-[#8C7A6B] transition-colors ml-1"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
