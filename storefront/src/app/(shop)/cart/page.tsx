@@ -7,8 +7,7 @@ import { useCart } from '@/context/CartContext';
 import { useState } from 'react';
 import { submitCheckout } from '@/lib/api';
 import { motion } from 'framer-motion';
-// This caches the page and updates it in the background at most once every 15 minutes
-export const revalidate = 900;
+
 const inputClass = "w-full bg-white border border-[#8C7A6B]/30 text-[#1A1A1A] p-4 focus:border-[#8C7A6B] focus:outline-none transition-colors placeholder-gray-400";
 const labelClass = "block text-xs font-bold tracking-[0.2em] uppercase text-[#8C7A6B] mb-2";
 
