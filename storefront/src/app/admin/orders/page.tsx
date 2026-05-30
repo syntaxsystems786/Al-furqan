@@ -5,8 +5,7 @@ import { apiGetOrders, apiUpdateOrderStatus } from '@/lib/adminApi';
 import { Check, AlertCircle } from 'lucide-react';
 
 const STATUS_OPTIONS = ['PENDING', 'PROCESSING', 'SHIPPED', 'DELIVERED', 'CANCELLED'];
-// This caches the page and updates it in the background at most once every 15 minutes
-export const revalidate = 900;
+
 const statusColors: Record<string, string> = {
   PENDING: 'border-yellow-400/50 text-yellow-700 bg-yellow-50',
   PROCESSING: 'border-blue-400/50 text-blue-700 bg-blue-50',

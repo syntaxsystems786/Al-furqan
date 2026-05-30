@@ -6,7 +6,8 @@ import TextReveal from '@/components/TextReveal';
 
 const PLACEHOLDER_IMAGE = 'https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=2000&auto=format&fit=crop';
 // This caches the page and updates it in the background at most once every 15 minutes
-export const revalidate = 900;
+// Explicitly declare it as a number so the compiler doesn't map it to a function
+export const revalidate: number = 900;
 export default async function ProductsPage({
   searchParams,
 }: {

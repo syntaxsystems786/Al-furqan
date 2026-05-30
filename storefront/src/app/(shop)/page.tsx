@@ -7,7 +7,8 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { fetchProducts } from "@/lib/api";
 import { ArrowRight, MessageCircle } from "lucide-react";
 // This caches the page and updates it in the background at most once every 15 minutes
-export const revalidate = 900;
+// Explicitly declare it as a number so the compiler doesn't map it to a function
+export const revalidate: number = 900;
 export default function Home() {
   const [featuredProducts, setFeaturedProducts] = useState<any[]>([]);
   const { scrollYProgress } = useScroll();

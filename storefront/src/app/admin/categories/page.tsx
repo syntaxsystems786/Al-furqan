@@ -3,8 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Plus, X, Edit, Trash2 } from 'lucide-react';
 import { apiGetCategories, apiCreateCategory, apiUpdateCategory, apiDeleteCategory } from '@/lib/adminApi';
-// This caches the page and updates it in the background at most once every 15 minutes
-export const revalidate = 900;
+
 export default function CategoriesPage() {
   const [categories, setCategories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
