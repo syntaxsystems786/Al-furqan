@@ -3,7 +3,8 @@
 import { useEffect, useState } from 'react';
 import { DollarSign, Package, ShoppingCart, TrendingUp } from 'lucide-react';
 import { apiGetProducts, apiGetOrders } from '@/lib/adminApi';
-
+// This caches the page and updates it in the background at most once every 15 minutes
+export const revalidate = 900;
 export default function AdminDashboard() {
   const [products, setProducts] = useState<any[]>([]);
   const [orders, setOrders] = useState<any[]>([]);

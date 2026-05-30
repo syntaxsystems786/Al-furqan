@@ -3,7 +3,8 @@
 import { useEffect, useState, useRef } from 'react';
 import { Plus, Edit, Trash2, X, Check, AlertCircle, Image as ImageIcon } from 'lucide-react';
 import { apiGetProducts, apiCreateProduct, apiUpdateProduct, apiDeleteProduct, apiGetCategories } from '@/lib/adminApi';
-
+// This caches the page and updates it in the background at most once every 15 minutes
+export const revalidate = 900;
 interface Variation { size: string; color: string; stock: number; }
 interface Product {
   id: number; name: string; description: string;
